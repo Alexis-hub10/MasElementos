@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>    
+        <meta charset="UTF-8">    
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">    
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>   
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <title>CAFETERIA "CUBIC WORLD"</title>    
+    </head>
+<body>
+<header id="header" class="container-fluid p-3 my-3 bg-dark text-white">
+    <h1 class="text-info">CAFETERIA "CUBIC WORLD"</h1>
+</header>
+<section id="listas">
+  <article>
+    <saludo></saludo>
+</article>
+    <h4 class="container-fluid p-3 my-3 bg-dark text-white">{{subtitulo}}</h4>
+   
+    <hr>
+
+    <hr>
+    <div class="container">
+        <div class="container">
+            <transition appear name="animate" enter-active-class="animate__animated animate__bounceInUp"
+                 leave-active-class="animate__animated animate__bounceOut">
+                 <h2 v-if="mostrar" align="center" v-text="mensajes.animationCustom"></h2> 
+                </transition>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+              </ol>
+          
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                <div class="item active">
+                  <img src="./imagenes/1.jpg" alt="malteada" style="width:90%;">
+                </div>
+          
+                <div class="item">
+                  <img src="./imagenes/2.jpg" alt="te" style="width:90%;">
+                </div>
+              
+                <div class="item">
+                  <img src="./imagenes/3.jpg"alt="cafe" style="width:90%;">
+                </div>
+              </div>
+            </div>
+          </div> 
+    <h2 class="container-fluid p-3 my-3 bg-dark text-white">Buscar Bebidas</h2>
+    <form class="form-inline" action="/action_page.php">
+    <input class="form-control mr-sm-2"type="search" v-model="busqueda" placeholder="Buscar Una Bebida">
+    </form><br>
+    
+      <ul class="list-group">
+       <li  v-for="bebida in buscarBebi" class="list-group-item list-group-item-info">
+         {{bebida.nombre}}-{{bebida.precio}}
+             </li>
+         </ul>
+       <h2  v-for="bebida in buscarBebi" >  {{bebida.nombre}}-{{bebida.precio}}</h2>
+    <hr> 
+    <h2 class="container-fluid p-3 my-3 bg-dark text-white">Buscar por precio</h2>
+    <form class="form-inline" action="/action_page.php">
+    <input class="form-control mr-sm-2"type="search" v-model="busque" placeholder="Buscar por precio">
+    </form><br>
+    
+      <ul class="list-group">
+       <li  v-for="bebi in buscarBebida" class="list-group-item list-group-item-info">
+         {{bebi.nombre}}-{{bebi.precio}}
+             </li>
+         </ul>
+       <h2  v-for="bebi in buscarBebida" >  {{bebi.nombre}}-{{bebi.ingredientes}}-{{bebi.tama}}-{{bebi.precio}}</h2>
+    <hr> 
+    <div>
+      <h2>Bebida favorita</h2>
+      <elegir-ganador :listado="bebid" :total_bebidas="7"></elegir-ganador>
+    </div>
+    
+    <template id="elegir-ganador-template">
+      <div>
+        <h2 v-if="ganador">El ganador es: {{ganador}}</h2>
+        <article v-else>
+          <ul class="list-unstyled text-center">
+            <li v-for="bebida in listado" v-text="bebida" class="list-group-item-success"></li>
+          </ul>
+        </article>
+        <button @click="elegirGanador()"  class="btn btn-dark">Elegir Ganador</button>
+      </div>
+    </template>
+    <form>
+    <label class="container-fluid p-3 my-3 bg-dark text-white">{{pregunta3}}</label>
+        <textarea v-model="vue.m" class="form-inline"></textarea>
+        <label class="container-fluid p-3 my-3 bg-dark text-white">{{pregunta4}}</label>
+        <textarea v-model="vue.t" class="form-inline"></textarea>
+       
+        <label>{{pregunta3 + vue.m}}</label><br>
+        <label>{{pregunta4 + vue.t}}</label><br>
+     
+    </form>
+</section>
+</body>
+<footer id="footer" class="container-fluid">
+   <h6 class="text-info">{{autor}}</h6>
+</footer>
+<script type="text/javascript" src="vue1.js">
+</script>
+</html>
